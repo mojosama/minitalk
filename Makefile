@@ -13,12 +13,12 @@ OBJ_CLIENT =$(SRC_CLIENT:.c=.o)
 OBJ_SERVER =$(SRC_SERVER:.c=.o)
 
 PRINTF_DIR = ./ft_printf
-PRINTF = $(PRINTF_DIR)/ft_printf
+PRINTF = $(PRINTF_DIR)/ft_printf.a
 PRINTF_MAKE = $(MAKE) -C $(PRINTF_DIR)
 
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
-%.o: %.c $(HEADERS)
+%.o: %.c $(HEADERS) $(PRINTF)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME_CLIENT): $(OBJ_CLIENT) $(PRINTF)

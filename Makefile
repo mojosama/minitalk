@@ -1,45 +1,43 @@
 NAME_CLIENT = client
-
 NAME_SERVER = server
 
 CC = cc
-
 CFLAGS = -Wall -Wextra -Werror 
 
 HEADERS = minitalk.h
 
-SRCS = utils.c ft_printf/ft_printf.c ft_printf/print_formats.c
-
 SRC_CLIENT = client.c
-
 SRC_SERVER = server.c
 
-OBJS =$(SRCS:.c=.o)
-
 OBJ_CLIENT =$(SRC_CLIENT:.c=.o)
-
 OBJ_SERVER =$(SRC_SERVER:.c=.o)
 
+PRINTF_DIR = ./ft_printf
+PRINTF = $(PRINTF_DIR)/ft_printf
+PRINTF_MAKE = $(MAKE) -C $(PRINTF_DIR)
+
 all: $(NAME_CLIENT) $(NAME_SERVER)
-
-$(NAME_CLIENT): $(OBJ_CLIENT) $(OBJS)
-	$(CC) $(OBJ_CLIENT) $(OBJS) -o $(NAME_CLIENT)
-
-$(NAME_SERVER): $(OBJ_SERVER) $(OBJS)
-	$(CC) $(OBJ_SERVER) $(OBJS) -o $(NAME_SERVER)
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(NAME_CLIENT): $(OBJ_CLIENT) $(PRINTF)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(NAME_SERVER): $(OBJ_SERVER) $(PRINTF)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(PRINTF):
+	@$(PRINTF_MAKE)
+
 clean:
-	rm -f $(OBJ_CLIENT)
-	rm -f $(OBJ_SERVER)
-	rm -f $(OBJS)
+	rm -f $(OBJ_CLIENT) $(OBJ_SERVER)
+	@$(PRINTF_MAKE) clean
 
 fclean: clean
-	rm -f $(NAME_CLIENT)
-	rm -f $(NAME_SERVER)
+	rm -f $(NAME_CLIENT) $(NAME_SERVER)
+	@$(PRINTF_MAKE) fclean
 
 re: fclean all
 
-.PHONY:  all clean fclean re
+.PHONY:  all client server clean fclean re

@@ -6,11 +6,11 @@
 /*   By: hlopez <hlopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:53:30 by hlopez            #+#    #+#             */
-/*   Updated: 2024/01/16 17:21:21 by hlopez           ###   ########.fr       */
+/*   Updated: 2024/01/18 14:44:07 by hlopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *format, ...)
 {

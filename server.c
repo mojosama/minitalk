@@ -6,13 +6,13 @@
 /*   By: hlopez <hlopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:55:28 by hlopez            #+#    #+#             */
-/*   Updated: 2024/01/17 17:07:37 by hlopez           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:37:00 by hlopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	signal_handler(int signal, siginfo_t *info, void *s)
+static void	signal_handler(int signal, siginfo_t *sig, void *s)
 {
 	static unsigned char	c = 0;
 	static int				bit = -1;
@@ -27,9 +27,9 @@ void	signal_handler(int signal, siginfo_t *info, void *s)
 	if (!bit && c)
 		ft_printf("%c", c);
 	else if (!bit && !c)
-		kill(info->si_pid, SIGUSR2);
+		kill(sig->si_pid, SIGUSR2);
 	bit--;
-	kill(info->si_pid, SIGUSR1);
+	kill(sig->si_pid, SIGUSR1);
 }
 
 int	main(int ac, char **av)

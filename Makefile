@@ -12,32 +12,32 @@ SRC_SERVER = server.c
 OBJ_CLIENT =$(SRC_CLIENT:.c=.o)
 OBJ_SERVER =$(SRC_SERVER:.c=.o)
 
-PRINTF_DIR = ./ft_printf
-PRINTF = $(PRINTF_DIR)/ft_printf.a
-PRINTF_MAKE = $(MAKE) -C $(PRINTF_DIR)
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT_MAKE = $(MAKE) -C $(LIBFT_DIR)
 
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
-%.o: %.c $(HEADERS) $(PRINTF)
+%.o: %.c $(HEADERS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME_CLIENT): $(OBJ_CLIENT) $(PRINTF)
+$(NAME_CLIENT): $(OBJ_CLIENT) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(NAME_SERVER): $(OBJ_SERVER) $(PRINTF)
+$(NAME_SERVER): $(OBJ_SERVER) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(PRINTF):
-	@$(PRINTF_MAKE)
+$(LIBFT):
+	@$(LIBFT_MAKE)
 
 clean:
 	rm -f $(OBJ_CLIENT) $(OBJ_SERVER)
-	@$(PRINTF_MAKE) clean
+	@$(LIBFT_MAKE) clean
 
 fclean: clean
 	rm -f $(NAME_CLIENT) $(NAME_SERVER)
-	@$(PRINTF_MAKE) fclean
+	@$(LIBFT_MAKE) fclean
 
 re: fclean all
 
-.PHONY:  all client server clean fclean re
+.PHONY:  all clean fclean re

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlopez <hlopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:45:53 by hlopez            #+#    #+#             */
-/*   Updated: 2024/01/18 14:48:07 by hlopez           ###   ########.fr       */
+/*   Created: 2023/11/07 17:20:51 by hlopez            #+#    #+#             */
+/*   Updated: 2023/11/17 13:21:58 by hlopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-// # include <unistd.h>
-# include <stdarg.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include "libft/libft.h"
+void	*ft_memchr(const void *memoryBlock, int searchedChar, size_t size)
+{
+	size_t	i;
+	char	*t;
 
-
-#endif
+	i = 0;
+	t = (char *)memoryBlock;
+	while (i < size)
+	{
+		if (t[i] == (char)searchedChar)
+			return (&t[i]);
+		i++;
+	}
+	return (0);
+}

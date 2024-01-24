@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlopez <hlopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:45:53 by hlopez            #+#    #+#             */
-/*   Updated: 2024/01/18 14:48:07 by hlopez           ###   ########.fr       */
+/*   Created: 2023/11/08 18:50:51 by hlopez            #+#    #+#             */
+/*   Updated: 2023/11/16 14:25:20 by hlopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-// # include <unistd.h>
-# include <stdarg.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include "libft/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*res;
 
-
-#endif
+	res = malloc(sizeof(*res));
+	if (!res)
+		return (NULL);
+	res->content = content;
+	res->next = 0;
+	return (res);
+}

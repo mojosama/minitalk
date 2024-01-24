@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlopez <hlopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:45:53 by hlopez            #+#    #+#             */
-/*   Updated: 2024/01/18 14:48:07 by hlopez           ###   ########.fr       */
+/*   Created: 2023/11/07 17:29:05 by hlopez            #+#    #+#             */
+/*   Updated: 2023/11/17 13:22:12 by hlopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-// # include <unistd.h>
-# include <stdarg.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include "libft/libft.h"
+int	ft_memcmp(const void *pointer1, const void *pointer2, size_t size)
+{
+	size_t	i;
+	int		a;
 
-
-#endif
+	i = 0;
+	a = 0;
+	while (i < size && a == 0)
+	{
+		a = ((unsigned char *)pointer1)[i] - ((unsigned char *)pointer2)[i];
+		i++;
+	}
+	return (a);
+}

@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlopez <hlopez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:45:53 by hlopez            #+#    #+#             */
-/*   Updated: 2024/01/18 14:48:07 by hlopez           ###   ########.fr       */
+/*   Created: 2023/11/07 15:56:34 by hlopez            #+#    #+#             */
+/*   Updated: 2023/11/15 13:52:33 by hlopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-// # include <unistd.h>
-# include <stdarg.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include "libft/libft.h"
-
-
-#endif
+void	*ft_memmove(void *dest, const void *src, size_t size)
+{
+	if (!dest && !src)
+		return (NULL);
+	if (dest > src)
+	{
+		while (size-- > 0)
+		{
+			((char *)dest)[size] = ((char *)src)[size];
+		}
+	}
+	else
+		ft_memcpy(dest, src, size);
+	return (dest);
+}
